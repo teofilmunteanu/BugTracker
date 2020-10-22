@@ -3,7 +3,11 @@ package com.teofilmunteanu.BugTracker.domain;
 import java.util.List;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+
 
 @Entity
 public class User 
@@ -39,7 +43,6 @@ public class User
 	
 	public User(String email, String name, String password) 
 	{
-		super();
 		this.email = email;
 		this.name = name;
 		this.password = password;

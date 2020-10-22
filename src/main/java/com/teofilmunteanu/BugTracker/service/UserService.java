@@ -2,6 +2,7 @@ package com.teofilmunteanu.BugTracker.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -40,6 +41,16 @@ public class UserService
 	
 	public User findOne(String email) 
 	{
-		return userRepo.findById(email).get();
+		if(userRepo.findById(email).isPresent())
+			return userRepo.findById(email).get();
+		else 
+			return null;
+	}
+	public boolean isUserPresent(String email) 
+	{
+		if(userRepo.findById(email).isPresent())
+			return true;
+		else
+			return false;
 	}
 }
