@@ -29,19 +29,22 @@ public class BugController
 
     // Get All Bugs
     @GetMapping("/bugs")
-    public List<Bug> getAllBugs() {
+    public List<Bug> getAllBugs() 
+    {
         return bugRepository.findAll();
     }
     
     // Create a new Bug
     @PostMapping("/bugs")
-    public Bug createBug(@Valid @RequestBody Bug bug) {
+    public Bug createBug(@Valid @RequestBody Bug bug) 
+    {
         return bugRepository.save(bug);
     }
     
     // Get a Single Bug
     @GetMapping("/bugs/{id}")
-    public Bug getBugById(@PathVariable(value = "id") Long bugId) {
+    public Bug getBugById(@PathVariable(value = "id") Long bugId) 
+    {
         return bugRepository.findById(bugId)
                 .orElseThrow(() -> new ResourceNotFoundException("Bug", "id", bugId));
     }
@@ -49,8 +52,8 @@ public class BugController
     // Update a Bug
     @PutMapping("/bugs/{id}")
     public Bug updateBug(@PathVariable(value = "id") Long bugId,
-                                            @Valid @RequestBody Bug bugDetails) {
-
+                                            @Valid @RequestBody Bug bugDetails) 
+    {
     	Bug bug = bugRepository.findById(bugId)
                 .orElseThrow(() -> new ResourceNotFoundException("Bug", "id", bugId));
 
@@ -63,7 +66,8 @@ public class BugController
     
     // Delete a Bug
     @DeleteMapping("/bugs/{id}")
-    public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Long bugId) {
+    public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Long bugId) 
+    {
     	Bug bug = bugRepository.findById(bugId)
                 .orElseThrow(() -> new ResourceNotFoundException("Bug", "id", bugId));
 

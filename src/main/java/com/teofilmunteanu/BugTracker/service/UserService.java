@@ -2,7 +2,6 @@ package com.teofilmunteanu.BugTracker.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -46,6 +45,17 @@ public class UserService
 		else 
 			return null;
 	}
+	
+	public List<User> findAll()
+	{
+		return userRepo.findAll();
+	}
+	
+	public List<User> findByName(String name)
+	{
+		return userRepo.findByNameLike("%"+name+"%");
+	}
+	
 	public boolean isUserPresent(String email) 
 	{
 		if(userRepo.findById(email).isPresent())

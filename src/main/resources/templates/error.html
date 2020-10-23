@@ -1,17 +1,18 @@
-
 <!DOCTYPE html>
 <html xmlns:th = "http://www.thymeleaf.org"
   xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate = "~{fragments/layout}" >
 <head>
- <title>Bug Tracker - register</title>
+ <title>Bug Tracker</title>
 </head>
 <body>
 
      <div  layout:fragment = "content" class = "container topPadding">
-     	<div class = "alert alert-success">
-     		Registration successful! Log in to continue
-     	</div>
+          <div class = "jumbotron">
+          	<p>There was an error to your request.</p>
+          	<p>Error: <span th:text = "${message}"></span>
+          	<span th:text = "${status}" class = "text text-danger"></span></p>
+          </div>
      </div>
 </body>
 </html>

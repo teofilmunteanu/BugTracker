@@ -2,7 +2,9 @@ package com.teofilmunteanu.BugTracker.domain;
 
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Role 
