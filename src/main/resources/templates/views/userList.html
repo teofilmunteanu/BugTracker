@@ -4,7 +4,7 @@
   xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate = "~{fragments/layout}" >
 <head>
- <title>Bug Tracker - users</title>
+ <title>Bug Tracker - developers</title>
 </head>
 <body>
 
@@ -26,7 +26,7 @@
      					</tr>
      				</thead>
      				<tbody>
-     					<tr th:each = "user:${users}">
+     					<tr th:each = "user:${Users}">
      						<td th:text = "${user.name}"></td>
      						<td th:text = "${user.email}"></td>
      						<td><a th:href = "@{/addTask(email=${user.email})}" class = "btn btn-light">AddTask</a></td>

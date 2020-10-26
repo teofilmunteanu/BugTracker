@@ -18,13 +18,19 @@ public class RegisterController
 	@Autowired
 	private UserService userService;
 	
+	/*At the "/register" get request, it inserts a new "User" object into the "user" attribute 
+	 * and returns(shows) the "registerForm.html" page*/
 	@GetMapping("/register")
 	public String registerForm(Model model)
 	{
 		model.addAttribute("user", new User());
+		
 		return "views/registerForm";
 	}
 	
+	/*At the "/register" post request(when the user submits the registration), 
+	 * if there is an error or the email is already registered in the database, it returns(shows) the "registerForm.html" page, 
+	 * otherwise, it creates a new user with the given credentials and returns(shows) the "registerSuccess.html" page*/
 	@PostMapping("/register")
 	public String registerUser(@Valid User user, BindingResult bindingResult, Model model)
 	{
@@ -34,12 +40,13 @@ public class RegisterController
 		}
 		if(userService.isUserPresent(user.getEmail()))
 		{
-			model.addAttribute("exists", true);
+			model.addAttribute("emailExists", true); 
+			
 			return "views/registerForm"; 
 		}
 		
-		userService.createUser(user);
+		userService.createUser(user); 
 		
-		return "views/success"; 
+		return "views/registerSuccess"; 
 	}
 }

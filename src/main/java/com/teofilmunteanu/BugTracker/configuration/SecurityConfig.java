@@ -19,6 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	@Autowired
 	private DataSource dataSource;
 	
+	/*At log in, it creates the queries that return the user's data(email,password,role) from the database*/
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception
 	{
@@ -34,14 +35,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 		return new BCryptPasswordEncoder();
 	}
 	
+	/*Authorizes requests depending on the user*/
 	@Override
 	protected void configure(HttpSecurity http) throws Exception
 	{
 		http.httpBasic().disable();
-		http.authorizeRequests().antMatchers("/register", "/", "/about", "/login", "/css/**", "/webjars/**").permitAll()
-		.antMatchers("/profile").hasAnyRole("USER, ADMIN")
-		.antMatchers("/users","/addTask").hasRole("ADMIN")
+		http.authorizeRequests().antMatchers("/", "/register", "/login", "/css/**", "/webjars/**").permitAll() 
+		.antMatchers("/tasks").hasAnyRole("DEVELOPER, PROJECT_MANAGER")
+		.antMatchers("/users", "/addTask").hasRole("PROJECT_MANAGER")
 		.and().formLogin().loginPage("/login").permitAll()
-		.defaultSuccessUrl("/profile").and().logout().logoutSuccessUrl("/login");
+		.defaultSuccessUrl("/tasks").and().logout().logoutSuccessUrl("/login");
 	}
 }

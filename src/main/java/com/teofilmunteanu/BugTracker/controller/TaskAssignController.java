@@ -15,7 +15,7 @@ import com.teofilmunteanu.BugTracker.service.TaskService;
 import com.teofilmunteanu.BugTracker.service.UserService;
 
 @Controller
-public class TaskController 
+public class TaskAssignController 
 {
 	@Autowired
 	private TaskService taskService;
@@ -23,6 +23,9 @@ public class TaskController
 	@Autowired
 	private UserService userService;
 	
+	/*At the "/addTask" get request, it inserts the user's email(representing the user's ID) into the "Email" attribute for the current session, 
+	 * it inserts a new "Task" object into the "Task" attribute
+	 * and it returns(shows) the "taskForm.html" page*/
 	@GetMapping("/addTask")
 	public String taskForm(String email, Model model, HttpSession session)
 	{
@@ -31,6 +34,8 @@ public class TaskController
 		return "views/taskForm";
 	}
 	
+	/*At the "/addTask" post request(when the manager user adds a task), if there is an error, it returns(shows) the "taskForm.html" page, 
+	 * otherwise, it adds the task to the selected developer user and it redirects the manager user to the "userList.html" page, through the "/users" get request*/
 	@PostMapping("/addTask")
 	public String addTask(@Valid Task task, BindingResult bindingResult, HttpSession session)
 	{
@@ -39,7 +44,7 @@ public class TaskController
 			return "views/taskForm";
 		}
 		
-		String email = (String)session.getAttribute("email");
+		String email = (String)session.getAttribute("email"); 
 		taskService.addTask(task, userService.findOne(email));
 		
 		return "redirect:/users";

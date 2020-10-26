@@ -15,13 +15,15 @@ public class TaskService
 	@Autowired
 	private TaskRepository taskRepo;
 	
+	/*Assigns the task to the corresponding user and stores the task data into the database*/
 	public void addTask(Task task, User user)
 	{
 		task.setUser(user);
 		taskRepo.save(task);
 	}
 	
-	public List<Task> findUserTask(User user)
+	/*Returns the tasks of the given user as a List*/
+	public List<Task> findUserTasks(User user)
 	{
 		return taskRepo.findByUser(user);
 	}

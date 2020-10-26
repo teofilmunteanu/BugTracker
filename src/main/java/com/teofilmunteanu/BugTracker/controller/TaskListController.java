@@ -12,7 +12,7 @@ import com.teofilmunteanu.BugTracker.service.TaskService;
 import com.teofilmunteanu.BugTracker.service.UserService;
 
 @Controller
-public class ProfileController 
+public class TaskListController 
 {
 	
 	@Autowired
@@ -20,16 +20,17 @@ public class ProfileController
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/profile")
-	public String showProfilePage(Model model, Principal principal) {
-		
+	/*At the "/tasks" get request, it inserts the currently authenticated user's tasks into the "Tasks" attribute 
+	 * and returns(shows) the "taskList.html" page*/
+	@GetMapping("/tasks")
+	public String showProfilePage(Model model, Principal principal) 
+	{
 		String email = principal.getName();
 		User user = userService.findOne(email);
 		
-		model.addAttribute("tasks", taskService.findUserTask(user));
+		model.addAttribute("Tasks", taskService.findUserTasks(user)); 
 		
-		
-		return "views/profile";
+		return "views/taskList";
 	}
 
 }

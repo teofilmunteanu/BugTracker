@@ -33,7 +33,6 @@ public class User
 	{
 		@JoinColumn(name = "ROLE_NAME", referencedColumnName = "name")
 	})
-	
 	private List<Role> roles;
 	
 	public User()
@@ -80,7 +79,8 @@ public class User
 	{
 		this.tasks = tasks;
 	}
-	public List<Role> getRoles() {
+	public List<Role> getRoles() 
+	{
 		return roles;
 	}
 	public void setRoles(List<Role> roles) 
