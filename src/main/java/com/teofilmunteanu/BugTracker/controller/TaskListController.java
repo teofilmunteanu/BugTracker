@@ -29,6 +29,7 @@ public class TaskListController
 		User user = userService.findOne(email);
 		
 		model.addAttribute("Tasks", taskService.findUserTasks(user)); 
+		model.addAttribute("Username", user.getName());
 		
 		return "views/taskList";
 	}

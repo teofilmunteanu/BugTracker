@@ -23,14 +23,15 @@ public class TaskAssignController
 	@Autowired
 	private UserService userService;
 	
-	/*At the "/addTask" get request, it inserts the user's email(representing the user's ID) into the "Email" attribute for the current session, 
-	 * it inserts a new "Task" object into the "Task" attribute
+	/*At the "/addTask" get request, it inserts the user's email(representing the user's ID) into the "email" attribute for the current session, 
+	 * it inserts a new "Task" object into the "task" attribute
 	 * and it returns(shows) the "taskForm.html" page*/
 	@GetMapping("/addTask")
 	public String taskForm(String email, Model model, HttpSession session)
 	{
 		session.setAttribute("email", email);
 		model.addAttribute("task", new Task());
+		
 		return "views/taskForm";
 	}
 	

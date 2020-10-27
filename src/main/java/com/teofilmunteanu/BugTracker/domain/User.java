@@ -34,12 +34,23 @@ public class User
 		@JoinColumn(name = "ROLE_NAME", referencedColumnName = "name")
 	})
 	private List<Role> roles;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "USER_TEAMS", 
+	joinColumns = 
+	{
+		@JoinColumn(name = "USER_EMAIL", referencedColumnName = "email")
+	}, 
+	inverseJoinColumns = 
+	{
+		@JoinColumn(name = "TEAM_NAME", referencedColumnName = "name")
+	})
+	private List<Team> teams;
 	
 	public User()
 	{
 		
 	}
-	
+
 	public User(String email, String name, String password) 
 	{
 		this.email = email;
@@ -47,6 +58,16 @@ public class User
 		this.password = password;
 	}
 	
+	public List<Team> getTeams() 
+	{
+		return teams;
+	}
+
+	public void setTeams(List<Team> teams) 
+	{
+		this.teams = teams;
+	}
+
 	public String getEmail() 
 	{
 		return email;
