@@ -8,30 +8,30 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.teofilmunteanu.BugTracker.domain.User;
-import com.teofilmunteanu.BugTracker.service.TaskService;
+import com.teofilmunteanu.BugTracker.service.BugService;
 import com.teofilmunteanu.BugTracker.service.UserService;
 
 @Controller
-public class TaskListController 
+public class BugListController 
 {
 	
 	@Autowired
-	private TaskService taskService;
+	private BugService bugService;
 	@Autowired
 	private UserService userService;
 	
-	/*At the "/tasks" get request, it inserts the currently authenticated user's tasks into the "Tasks" attribute 
-	 * and returns(shows) the "taskList.html" page*/
-	@GetMapping("/tasks")
+	/*At the "/bugs" get request, it inserts the currently authenticated user's assigned bugs into the "Bugs" attribute 
+	 * and returns(shows) the "bugList.html" page*/
+	@GetMapping("/bugs")
 	public String showProfilePage(Model model, Principal principal) 
 	{
 		String email = principal.getName();
 		User user = userService.findOne(email);
 		
-		model.addAttribute("Tasks", taskService.findUserTasks(user)); 
+		model.addAttribute("Bugs", bugService.findUserBugs(user)); 
 		model.addAttribute("Username", user.getName());
 		
-		return "views/taskList";
+		return "views/bugList";
 	}
 
 }

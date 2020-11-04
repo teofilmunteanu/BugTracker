@@ -2,6 +2,7 @@ package com.teofilmunteanu.BugTracker.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -11,7 +12,8 @@ public class Role
 {
 	@Id
 	private String name;
-	@ManyToMany(mappedBy = "roles")
+	
+	@ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
 	private List<User> users;
 
 	public Role() 

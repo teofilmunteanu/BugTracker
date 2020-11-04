@@ -17,45 +17,104 @@ public class User
 	@NotEmpty
 	@Column(unique = true)
 	private String email;
+	
 	@NotEmpty
 	private String name;
+	
 	@Size(min = 6)
 	private String password;
+	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private List<Task> tasks;
+	private List<Bug> bugs;
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "USER_ROLES", 
-	joinColumns = 
-	{
-		@JoinColumn(name = "USER_EMAIL", referencedColumnName = "email")
-	}, 
-	inverseJoinColumns = 
-	{
-		@JoinColumn(name = "ROLE_NAME", referencedColumnName = "name")
-	})
+		joinColumns = { @JoinColumn(name = "USER_EMAIL") }, 
+		inverseJoinColumns = { @JoinColumn(name = "ROLE_NAME") })
 	private List<Role> roles;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "USER_PROJECTS", 
+		joinColumns = { @JoinColumn(name = "USER_EMAIL") }, 
+		inverseJoinColumns = { @JoinColumn(name = "PROJECT_NAME") })
+	private List<Project> projects;
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "USER_TEAMS", 
-	joinColumns = 
-	{
-		@JoinColumn(name = "USER_EMAIL", referencedColumnName = "email")
-	}, 
-	inverseJoinColumns = 
-	{
-		@JoinColumn(name = "TEAM_NAME", referencedColumnName = "name")
-	})
+		joinColumns = { @JoinColumn(name = "USER_EMAIL") }, 
+		inverseJoinColumns = { @JoinColumn(name = "TEAM_NAME") })
 	private List<Team> teams;
 	
 	public User()
 	{
 		
 	}
-
-	public User(String email, String name, String password) 
+	
+	public User(@Email @NotEmpty String email, @NotEmpty String name, @Size(min = 6) String password) 
 	{
 		this.email = email;
 		this.name = name;
 		this.password = password;
+	}
+
+	public String getEmail() 
+	{
+		return email;
+	}
+	
+	public void setEmail(String email) 
+	{
+		this.email = email;
+	}
+	
+	public String getName() 
+	{
+		return name;
+	}
+	
+	public void setName(String name) 
+	{
+		this.name = name;
+	}
+	
+	public String getPassword() 
+	{
+		return password;
+	}
+	
+	public void setPassword(String password) 
+	{
+		this.password = password;
+	}
+	
+	public List<Bug> getBugs() 
+	{
+		return bugs;
+	}
+	
+	public void setBugs(List<Bug> bugs) 
+	{
+		this.bugs = bugs;
+	}
+	
+	public List<Role> getRoles() 
+	{
+		return roles;
+	}
+	
+	public void setRoles(List<Role> roles) 
+	{
+		this.roles = roles;
+	}
+
+	public List<Project> getProjects()
+	{
+		return projects;
+	}
+	
+	public void setProjects(List<Project> projects) 
+	{
+		this.projects = projects;
 	}
 	
 	public List<Team> getTeams() 
@@ -67,46 +126,4 @@ public class User
 	{
 		this.teams = teams;
 	}
-
-	public String getEmail() 
-	{
-		return email;
-	}
-	public void setEmail(String email) 
-	{
-		this.email = email;
-	}
-	public String getName() 
-	{
-		return name;
-	}
-	public void setName(String name) 
-	{
-		this.name = name;
-	}
-	public String getPassword() 
-	{
-		return password;
-	}
-	public void setPassword(String password) 
-	{
-		this.password = password;
-	}
-	public List<Task> getTask() 
-	{
-		return tasks;
-	}
-	public void setTask(List<Task> tasks) 
-	{
-		this.tasks = tasks;
-	}
-	public List<Role> getRoles() 
-	{
-		return roles;
-	}
-	public void setRoles(List<Role> roles) 
-	{
-		this.roles = roles;
-	}
-	
 }

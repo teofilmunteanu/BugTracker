@@ -17,7 +17,7 @@
         <a class = "nav-link" href = "/login">Log in</a>
       </li>
       <li class = "nav-item" sec:authorize = "isAuthenticated()"  >
-        <a class = "nav-link" href = "/tasks">My Tasks</a>
+        <a class = "nav-link" href = "/bugs">My Bugs</a>
       </li>
         <li class = "nav-item" sec:authorize = "hasRole('ROLE_PROJECT_MANAGER')">
         <a class = "nav-link" href = "/users">Developers</a>

@@ -5,26 +5,26 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.teofilmunteanu.BugTracker.domain.Task;
+import com.teofilmunteanu.BugTracker.domain.Bug;
 import com.teofilmunteanu.BugTracker.domain.User;
-import com.teofilmunteanu.BugTracker.repository.TaskRepository;
+import com.teofilmunteanu.BugTracker.repository.BugRepository;
 
 @Service
-public class TaskService
+public class BugService
 {
 	@Autowired
-	private TaskRepository taskRepo;
+	private BugRepository bugRepo;
 	
 	/*Assigns the task to the corresponding user and stores the task data into the database*/
-	public void addTask(Task task, User user)
+	public void addBug(Bug bug, User user)
 	{
-		task.setUser(user);
-		taskRepo.save(task);
+		bug.setUser(user);
+		bugRepo.save(bug);
 	}
 	
 	/*Returns the tasks of the given user as a List*/
-	public List<Task> findUserTasks(User user)
+	public List<Bug> findUserBugs(User user)
 	{
-		return taskRepo.findByUser(user);
+		return bugRepo.findByUser(user);
 	}
 }

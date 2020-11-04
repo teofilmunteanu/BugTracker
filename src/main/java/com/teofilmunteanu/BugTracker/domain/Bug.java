@@ -1,92 +1,122 @@
 package com.teofilmunteanu.BugTracker.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-//import java.io.Serializable;
-import java.util.Date;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "bugs")
-@EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)
-public class Bug //implements Serializable 
+public class Bug 
 {
-	//private static final long serialVersionUID = -8657390632317756762L;
-
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotBlank
-    private String title;
-
-    @NotBlank
-    private String content;
-
-    @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    private Date createdAt;
-
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    private Date updatedAt;
-
-	public Long getId() 
+	@GeneratedValue
+	private Long id;
+	
+	@NotEmpty
+	private String subject;
+	
+	@NotEmpty
+	private String startDate;
+	
+	@NotEmpty
+	private String priority;
+	
+	@Column(name = "status")
+	private String status = "Open";
+	
+	@NotEmpty
+	@Column(length = 3000)
+	private String description;
+	
+	@ManyToOne
+	@JoinColumn(name = "USER_EMAIL")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "PROJECT_NAME")
+	private Project project;
+	
+	public Bug() 
 	{
-		return id;
+		
+	}
+	
+	public Bug(@NotEmpty String subject, @NotEmpty String startDate, @NotEmpty String priority,
+			String status, @NotEmpty String description) 
+	{
+		this.subject = subject;
+		this.startDate = startDate;
+		this.priority = priority;
+		this.status = status;
+		this.description = description;
 	}
 
-	public void setId(Long id) 
+	public Bug(@NotEmpty String subject, @NotEmpty String startDate, @NotEmpty String priority, 
+			String status, @NotEmpty String description, User user) 
 	{
-		this.id = id;
+		this.subject = subject;
+		this.startDate = startDate;
+		this.priority = priority;
+		this.status = status;
+		this.description = description;
+		this.user = user;
+	}
+	
+	public String getSubject()
+	{
+		return subject;
 	}
 
-	public String getTitle()
+	public void setSubject(String subject) 
 	{
-		return title;
+		this.subject = subject;
 	}
 
-	public void setTitle(String title)
+	public String getStartDate() 
 	{
-		this.title = title;
+		return startDate;
 	}
 
-	public String getContent()
+	public void setStartDate(String startDate)
 	{
-		return content;
+		this.startDate = startDate;
 	}
 
-	public void setContent(String content)
+	public String getPriority()
 	{
-		this.content = content;
+		return priority;
 	}
 
-	public Date getCreatedAt() 
+	public void setPriority(String priority) 
 	{
-		return createdAt;
+		this.priority = priority;
 	}
 
-	public void setCreatedAt(Date createdAt) 
+	public String getStatus()
 	{
-		this.createdAt = createdAt;
+		return status;
 	}
 
-	public Date getUpdatedAt() 
+	public void setStatus(String status)
 	{
-		return updatedAt;
+		this.status = status;
 	}
 
-	public void setUpdatedAt(Date updatedAt) 
+	public String getDescription() 
 	{
-		this.updatedAt = updatedAt;
+		return description;
+	}
+
+	public void setDescription(String description) 
+	{
+		this.description = description;
+	}
+
+	public User getUser()
+	{
+		return user;
+	}
+
+	public void setUser(User user)
+	{
+		this.user = user;
 	}
 }

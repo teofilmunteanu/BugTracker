@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org"
+  xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate = "~{fragments/layout}" >
+<head>
+ <title th:text = "${Username + ' - bugs'}"></title>
+</head>
+<body>
+	<div  layout:fragment = "content" class = "container topPadding">
+		<div class = "card">
+     		<div class = "card card-body">
+     			<table class = "table table-hover">
+					<thead>
+     					<tr>
+     						<th>Subject</th>
+     						<th>Start Date</th>
+     					    <th>Priority</th>
+     					    <th>Status</th>
+     					</tr>
+					</thead>
+					<tbody>
+						<tr th:each = "bug:${Bugs}">
+							<td th:text = "${bug.subject}"></td>
+							<td th:text = "${bug.startDate}"></td>
+							<td th:text = "${bug.priority}"></td>
+							<td th:text = "${bug.status}"></td>
+						</tr>
+					</tbody>
+     			</table>
+     		</div>
+		</div>
+     </div>
+</body>
+</html>

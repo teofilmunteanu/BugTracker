@@ -15,9 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
-import com.teofilmunteanu.BugTracker.domain.Task;
+import com.teofilmunteanu.BugTracker.domain.Bug;
 import com.teofilmunteanu.BugTracker.domain.User;
-import com.teofilmunteanu.BugTracker.service.TaskService;
+import com.teofilmunteanu.BugTracker.service.BugService;
 import com.teofilmunteanu.BugTracker.service.UserService;
 
 //@RunWith(SpringRunner.class)

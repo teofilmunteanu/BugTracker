@@ -9,14 +9,15 @@
 <body>
 
      <div  layout:fragment = "content" class = "container topPadding">
-     	<form action = "/users" class = "form-inline">
+
+     	<div class = "card">
+     		<div class = "card card-body">
+     		     	<form action = "/users" class = "form-inline">
      		<div class = "form-group mb-2">
      			<input type = "text"class = "form-control" name = "name" placeholder = "Search user" />
      			<input type = "submit" value = "Search" class = "bth btn-primary"/>
      		</div>
      	</form>
-     	<div class = "card">
-     		<div class = "card card-body">
      			<table class = "table table-hover">
      				<thead>
      					<tr>
@@ -29,7 +30,7 @@
      					<tr th:each = "user:${Users}">
      						<td th:text = "${user.name}"></td>
      						<td th:text = "${user.email}"></td>
-     						<td><a th:href = "@{/addTask(email=${user.email})}" class = "btn btn-light">AddTask</a></td>
+     						<td><a th:href = "@{/addBug(email=${user.email})}" class = "btn btn-light">AddBug</a></td>
      						<!-- addToTeam(email) -->
      					</tr>
      				</tbody>

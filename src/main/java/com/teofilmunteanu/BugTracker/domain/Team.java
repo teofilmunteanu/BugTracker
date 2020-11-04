@@ -14,8 +14,15 @@ public class Team
 	@NotEmpty
 	@Column(unique = true)
 	private String name;	
+	
 	@ManyToMany(mappedBy = "teams", cascade = CascadeType.ALL)
 	private List<User> users;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "TEAM_PROJECTS", 
+		joinColumns = { @JoinColumn(name = "TEAM_NAME") }, 
+		inverseJoinColumns = { @JoinColumn(name = "PROJECT_NAME") })
+	private List<Project> projects;
 	
 	public Team()
 	{
