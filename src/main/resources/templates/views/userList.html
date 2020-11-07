@@ -7,31 +7,31 @@
  <title>Bug Tracker - developers</title>
 </head>
 <body>
-
-     <div  layout:fragment = "content" class = "container topPadding">
-
+	<div  layout:fragment = "content" class = "container topPadding">
      	<div class = "card">
      		<div class = "card card-body">
-     		     	<form action = "/users" class = "form-inline">
-     		<div class = "form-group mb-2">
-     			<input type = "text"class = "form-control" name = "name" placeholder = "Search user" />
-     			<input type = "submit" value = "Search" class = "bth btn-primary"/>
-     		</div>
-     	</form>
+     		     <form action = "/users" class = "form-inline" autocomplete="off">
+     				<div class = "form-group mb-2">
+     					<input type = "text" class = "form-control" name = "name" placeholder = "Search user"/>
+     					<input type = "submit" value = "Search" class = "bth btn-primary"/>
+     				</div>
+     			</form>
+   				<a href = "/register" ><button class = "bth btn-primary newUserPos">New User</button></a>
      			<table class = "table table-hover">
      				<thead>
      					<tr>
-     						<th>Name</th>
+     						<th>First Name</th>
+     						<th>Last Name</th>
      						<th>Email</th>
      						<th>Add</th>
      					</tr>
      				</thead>
      				<tbody>
-     					<tr th:each = "user:${Users}">
-     						<td th:text = "${user.name}"></td>
+     					<tr th:each = "user:${Users}" th:if = "${user.managerEmail} == ${#authentication.getPrincipal().getUsername()}">
+     						<td th:text = "${user.firstName}"></td>
+     						<td th:text = "${user.lastName}"></td>
      						<td th:text = "${user.email}"></td>
-     						<td><a th:href = "@{/addBug(email=${user.email})}" class = "btn btn-light">AddBug</a></td>
-     						<!-- addToTeam(email) -->
+     						<td><a th:href = "@{/addBug(email = ${user.email})}" class = "btn btn-light">AddBug</a></td>
      					</tr>
      				</tbody>
      			</table>

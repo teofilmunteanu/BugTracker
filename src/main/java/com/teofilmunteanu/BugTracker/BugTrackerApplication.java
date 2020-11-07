@@ -24,9 +24,8 @@ public class BugTrackerApplication implements CommandLineRunner
 	@Override
 	public void run(String... args) throws Exception
 	{
-		User newManager = new User("manager@email.com", "Manager", "manager");
-		User manager = new User("manager@mail.com", "Manager Test", "manager");
+		User newManager = new User("manager@email.com", "Manager", "Test", "manager");
+		newManager.setName(newManager.getFirstName() + ' ' + newManager.getLastName());
 		userService.createManager(newManager);
-		userService.createManager(manager);
 	}
 }

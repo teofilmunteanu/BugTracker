@@ -19,10 +19,17 @@ public class User
 	private String email;
 	
 	@NotEmpty
+	private String firstName;
+	
+	@NotEmpty
+	private String lastName;
+	
 	private String name;
 	
 	@Size(min = 6)
 	private String password;
+	
+	private String managerEmail;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Bug> bugs;
@@ -50,10 +57,11 @@ public class User
 		
 	}
 	
-	public User(@Email @NotEmpty String email, @NotEmpty String name, @Size(min = 6) String password) 
+	public User(@Email @NotEmpty String email, @NotEmpty String firstName, @NotEmpty String lastName, @Size(min = 6) String password) 
 	{
 		this.email = email;
-		this.name = name;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.password = password;
 	}
 
@@ -67,16 +75,36 @@ public class User
 		this.email = email;
 	}
 	
+	public String getFirstName() 
+	{
+		return firstName;
+	}
+	
+	public void setFirstName(String firstName) 
+	{
+		this.firstName = firstName;
+	}
+	
+	public String getLastName() 
+	{
+		return lastName;
+	}
+	
+	public void setLastName(String lastName) 
+	{
+		this.lastName = lastName;
+	}
+	
 	public String getName() 
 	{
 		return name;
 	}
 	
-	public void setName(String name) 
+	public void setName(String name)
 	{
 		this.name = name;
 	}
-	
+
 	public String getPassword() 
 	{
 		return password;
@@ -125,5 +153,15 @@ public class User
 	public void setTeams(List<Team> teams) 
 	{
 		this.teams = teams;
+	}
+
+	public String getManagerEmail() 
+	{
+		return managerEmail;
+	}
+
+	public void setManagerEmail(String managerEmail) 
+	{
+		this.managerEmail = managerEmail;
 	}
 }

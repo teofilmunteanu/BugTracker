@@ -18,7 +18,7 @@ public class UserService
 	private UserRepository userRepo;
 	
 	/*Encrypts the given password, assigns the "DEVELOPER" role and stores the user data in the database*/
-	public void createUser(User user)
+	public void createDeveloper(User user)
 	{
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		user.setPassword(encoder.encode(user.getPassword()));
@@ -59,7 +59,7 @@ public class UserService
 	/*Returns the users with the given string in their name as a List*/
 	public List<User> findByName(String name)
 	{
-		return userRepo.findByNameLike("%"+name+"%");
+		return userRepo.findByNameLike("%" + name + "%");
 	}
 	
 	/*Returns true if the given email is stored in the database and false otherwise*/

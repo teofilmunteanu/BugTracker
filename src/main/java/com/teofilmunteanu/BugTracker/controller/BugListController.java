@@ -29,7 +29,7 @@ public class BugListController
 		User user = userService.findOne(email);
 		
 		model.addAttribute("Bugs", bugService.findUserBugs(user)); 
-		model.addAttribute("Username", user.getName());
+		model.addAttribute("Name", user.getName());
 		
 		return "views/bugList";
 	}
