@@ -21,7 +21,9 @@ public class UserService
 	public void createDeveloper(User user)
 	{
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		user.setName(user.getFirstName() + ' ' + user.getLastName());
 		user.setPassword(encoder.encode(user.getPassword()));
+		user.setManagerEmail(user.getEmail());
 		Role userRole = new Role("DEVELOPER");
 		List<Role> roles = new ArrayList<>();
 		roles.add(userRole);
@@ -33,7 +35,9 @@ public class UserService
 	public void createManager(User user)
 	{
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		user.setName(user.getFirstName() + ' ' + user.getLastName());
 		user.setPassword(encoder.encode(user.getPassword()));
+		user.setManagerEmail(user.getEmail());
 		Role userRole = new Role("PROJECT_MANAGER");
 		List<Role> roles = new ArrayList<>();
 		roles.add(userRole);
@@ -63,7 +67,7 @@ public class UserService
 	}
 	
 	/*Returns true if the given email is stored in the database and false otherwise*/
-	public boolean isUserPresent(String email) 
+	public boolean userExists(String email) 
 	{
 		if(userRepo.findById(email).isPresent())
 			return true;

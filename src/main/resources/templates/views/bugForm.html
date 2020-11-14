@@ -32,9 +32,9 @@
 	     	<div class = "form-group">
 			    <label for  ="priority" class = "form-control-label">Priority</label>
 			    <select class = "form-control"  th:field = "*{priority}" id = "priority">
-					<option value = "High">High</option>
-					<option value = "Medium">Medium</option>
 					<option value = "Low">Low</option>
+					<option value = "Medium">Medium</option>
+					<option value = "High">High</option>
 			    </select>
 			    <div class = "text text-danger" th:if = "${#fields.hasErrors('priority')}" th:errors = "*{priority}">        	
 	     		</div>

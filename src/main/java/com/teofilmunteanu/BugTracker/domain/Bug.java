@@ -16,7 +16,6 @@ public class Bug
 	@NotEmpty
 	private String startDate;
 	
-	@NotEmpty
 	private String priority;
 	
 	@Column(name = "status")
@@ -39,7 +38,7 @@ public class Bug
 		
 	}
 	
-	public Bug(@NotEmpty String subject, @NotEmpty String startDate, @NotEmpty String priority,
+	public Bug(@NotEmpty String subject, @NotEmpty String startDate, String priority,
 			String status, @NotEmpty String description) 
 	{
 		this.subject = subject;
@@ -49,7 +48,7 @@ public class Bug
 		this.description = description;
 	}
 
-	public Bug(@NotEmpty String subject, @NotEmpty String startDate, @NotEmpty String priority, 
+	public Bug(@NotEmpty String subject, @NotEmpty String startDate, String priority, 
 			String status, @NotEmpty String description, User user) 
 	{
 		this.subject = subject;

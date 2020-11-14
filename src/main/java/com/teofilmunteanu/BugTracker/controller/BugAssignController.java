@@ -35,7 +35,7 @@ public class BugAssignController
 		return "views/bugForm";
 	}
 	
-	/*At the "/addBug" post request(when the manager user adds a bug), if there is an error, it returns(shows) the "bugForm.html" page, 
+	/*At the "/addBug" post request(when the user adds a bug), if there is an error, it returns(shows) the "bugForm.html" page, 
 	 * otherwise, it adds the bug to the selected developer user and it redirects the manager user to the "userList.html" page, through the "/users" get request*/
 	@PostMapping("/addBug")
 	public String addBug(@Valid Bug bug, BindingResult bindingResult, HttpSession session)

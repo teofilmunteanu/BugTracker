@@ -48,8 +48,8 @@ public class User
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "USER_TEAMS", 
-		joinColumns = { @JoinColumn(name = "USER_EMAIL") }, 
-		inverseJoinColumns = { @JoinColumn(name = "TEAM_NAME") })
+		joinColumns = { @JoinColumn(name = "USER_EMAIL") },
+		inverseJoinColumns = {@JoinColumn(name = "TEAM_MANAGER"), @JoinColumn(name = "TEAM_NAME") })
 	private List<Team> teams;
 	
 	public User()

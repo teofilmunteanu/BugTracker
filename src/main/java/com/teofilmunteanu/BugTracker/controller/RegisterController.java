@@ -1,6 +1,5 @@
 package com.teofilmunteanu.BugTracker.controller;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +22,17 @@ public class RegisterController
 	/*At the "/register" get request, it inserts a new "User" object into the "user" attribute 
 	 * and returns(shows) the "registerForm.html" page*/
 	@GetMapping("/register")
-	public String registerForm(Model model, HttpSession session, Authentication authentication)
+	public String registerForm(Model model)
 	{
 		model.addAttribute("user", new User());
-		if(authentication == null)
+		/*if(authentication == null)
 		{
 			session.setAttribute("manager", null);
 		}
 		else
 		{
 			session.setAttribute("manager", authentication.getName());
-		}
+		}*/
 			
 		return "views/registerForm";
 	}
@@ -42,23 +41,23 @@ public class RegisterController
 	 * if there is an error or the email is already registered in the database, it returns(shows) the "registerForm.html" page, 
 	 * otherwise, it creates a new user with the given credentials and returns(shows) the "registerSuccess.html" page*/
 	@PostMapping("/register")
-	public String registerManager(@Valid User user, BindingResult bindingResult, Model model, HttpSession session)
+	public String registerManager(@Valid User user, BindingResult bindingResult, Model model, Authentication authentication)
 	{
 		if(bindingResult.hasErrors())
 		{
 			return "views/registerForm";
 		}
-		if(userService.isUserPresent(user.getEmail()))
+		if(userService.userExists(user.getEmail()))
 		{
 			model.addAttribute("emailExists", true); 
 			
 			return "views/registerForm"; 
 		}
 		
-		user.setName(user.getFirstName() + ' ' + user.getLastName());
-		user.setManagerEmail((String)session.getAttribute("manager"));
+		//user.setName(user.getFirstName() + ' ' + user.getLastName());
+		//user.setManagerEmail((String)session.getAttribute("manager"));
 		
-		if((String)session.getAttribute("manager") == null)
+		if(authentication == null)/*if((String)session.getAttribute("manager") == null)*/
 		{
 			userService.createManager(user); 
 		}

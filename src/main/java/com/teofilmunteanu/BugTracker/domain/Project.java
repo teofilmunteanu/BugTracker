@@ -5,13 +5,20 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
+@IdClass(ProjectId.class)
 public class Project 
 {
 	@Id
+	private String managerEmail;
+	
+	@Id
+	@NotEmpty
 	private String name;
 	
 	private String due_to;
@@ -38,15 +45,17 @@ public class Project
 		this.due_to = due_to;
 		this.status = status;
 	}
-	
-	public Project(String name, String due_to, String status, List<User> users) 
+
+	public String getManagerEmail() 
 	{
-		this.name = name;
-		this.due_to = due_to;
-		this.status = status;
-		this.users = users;
+		return managerEmail;
 	}
 
+	public void setManagerEmail(String managerEmail) 
+	{
+		this.managerEmail = managerEmail;
+	}
+	
 	public String getName() 
 	{
 		return name;
@@ -87,5 +96,24 @@ public class Project
 		this.users = users;
 	}
 	
-	
+
+	public List<Bug> getBugs() 
+	{
+		return bugs;
+	}
+
+	public void setBugs(List<Bug> bugs) 
+	{
+		this.bugs = bugs;
+	}
+
+	public List<Team> getTeams() 
+	{
+		return teams;
+	}
+
+	public void setTeams(List<Team> teams) 
+	{
+		this.teams = teams;
+	}
 }

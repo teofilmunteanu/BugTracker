@@ -16,7 +16,7 @@
      	<form th:action = "@{/register}" th:object = "${user}" method = "post" autocomplete="off">
 	     	<div class = "form-group">
 	     		<label for = "email" class = "form-control-label">Email</label>
-	     		<input type = "text" class = "form-control" th:field = "*{email}" id = "email"/>
+	     		<input type = "text" class = "form-control" th:field = "*{email}" id = "email" autofocus/>
 	     		<div class = "text text-danger" th:if="${#fields.hasErrors('email')}" th:errors = "*{email}">        	
 	     		</div>
 	     	</div>

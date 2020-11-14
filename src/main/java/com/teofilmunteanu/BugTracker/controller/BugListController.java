@@ -23,7 +23,7 @@ public class BugListController
 	/*At the "/bugs" get request, it inserts the currently authenticated user's assigned bugs into the "Bugs" attribute 
 	 * and returns(shows) the "bugList.html" page*/
 	@GetMapping("/bugs")
-	public String showProfilePage(Model model, Principal principal) 
+	public String myBugs(Model model, Principal principal) 
 	{
 		String email = principal.getName();
 		User user = userService.findOne(email);

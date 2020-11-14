@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org"
+  xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate = "~{fragments/layout}" >
+<head>
+ <title>Bug Tracker - teams</title>
+</head>
+<body>
+	<div  layout:fragment = "content" class = "container topPadding">
+     	<div class = "card">
+     		<div class = "card card-body">
+     		     <form action = "/teams" class = "form-inline" autocomplete="off">
+     				<div class = "form-group mb-2">
+     					<input type = "text" class = "form-control" name = "name" placeholder = "Search team"/>
+     					<input type = "submit" value = "Search" class = "bth btn-primary"/>
+     				</div>
+     			</form>
+   				<a href = "/newTeam" ><button class = "bth btn-primary newPos">New Team</button></a>
+     			<table class = "table table-hover">
+     				<thead>
+     					<tr>
+     						<th>Name</th>
+     						<th>Members</th>
+     					</tr>
+     				</thead>
+     				<tbody>
+     					<tr th:each = "team:${Teams}" th:if = "${team.managerEmail} == ${#authentication.getPrincipal().getUsername()}">
+     						<td th:text = "${team.name}"></td>
+     						<td th:text = "${team.nrOfMembers}"></td>
+     					</tr>
+     				</tbody>
+     			</table>
+     		</div>
+     	</div>
+     </div>
+</body>
+</html>
