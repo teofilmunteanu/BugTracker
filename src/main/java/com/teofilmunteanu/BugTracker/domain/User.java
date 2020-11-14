@@ -43,7 +43,7 @@ public class User
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "USER_PROJECTS", 
 		joinColumns = { @JoinColumn(name = "USER_EMAIL") }, 
-		inverseJoinColumns = { @JoinColumn(name = "PROJECT_NAME") })
+		inverseJoinColumns = { @JoinColumn(name = "PROJECT_MANAGER"), @JoinColumn(name = "PROJECT_NAME") })
 	private List<Project> projects;
 	
 	@ManyToMany(cascade = CascadeType.ALL)

@@ -24,7 +24,7 @@ public class Team
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "TEAM_PROJECTS", 
 		joinColumns = { @JoinColumn(name = "TEAM_MANAGER"), @JoinColumn(name = "TEAM_NAME") }, 
-		inverseJoinColumns = { @JoinColumn(name = "PROJECT_NAME") })
+		inverseJoinColumns = { @JoinColumn(name = "PROJECT_MANAGER"), @JoinColumn(name = "PROJECT_NAME") })
 	private List<Project> projects;
 	
 	public Team()

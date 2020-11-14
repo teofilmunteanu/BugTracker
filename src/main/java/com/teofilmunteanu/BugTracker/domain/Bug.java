@@ -30,7 +30,7 @@ public class Bug
 	private User user;
 	
 	@ManyToOne
-	@JoinColumn(name = "PROJECT_NAME")
+	@JoinColumns({@JoinColumn(name = "PROJECT_MANAGER"), @JoinColumn(name = "PROJECT_NAME")})
 	private Project project;
 	
 	public Bug() 
