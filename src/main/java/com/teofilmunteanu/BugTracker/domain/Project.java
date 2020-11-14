@@ -21,7 +21,7 @@ public class Project
 	@NotEmpty
 	private String name;
 	
-	private String due_to;
+	private String dueTo;
 	
 	private String status;
 	
@@ -39,10 +39,10 @@ public class Project
 		
 	}
 
-	public Project(String name, String due_to, String status) 
+	public Project(String name, String dueTo, String status) 
 	{
 		this.name = name;
-		this.due_to = due_to;
+		this.dueTo = dueTo;
 		this.status = status;
 	}
 
@@ -66,14 +66,14 @@ public class Project
 		this.name = name;
 	}
 
-	public String getDue_to()
+	public String getDueTo()
 	{
-		return due_to;
+		return dueTo;
 	}
 
-	public void setDue_to(String due_to) 
+	public void setDue_to(String dueTo) 
 	{
-		this.due_to = due_to;
+		this.dueTo = dueTo;
 	}
 
 	public String getStatus() 

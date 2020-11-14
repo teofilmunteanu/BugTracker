@@ -23,7 +23,6 @@ public class UserService
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		user.setName(user.getFirstName() + ' ' + user.getLastName());
 		user.setPassword(encoder.encode(user.getPassword()));
-		user.setManagerEmail(user.getEmail());
 		Role userRole = new Role("DEVELOPER");
 		List<Role> roles = new ArrayList<>();
 		roles.add(userRole);
@@ -37,7 +36,6 @@ public class UserService
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		user.setName(user.getFirstName() + ' ' + user.getLastName());
 		user.setPassword(encoder.encode(user.getPassword()));
-		user.setManagerEmail(user.getEmail());
 		Role userRole = new Role("PROJECT_MANAGER");
 		List<Role> roles = new ArrayList<>();
 		roles.add(userRole);

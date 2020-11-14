@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org"
+  xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate = "~{fragments/layout}" >
+<head>
+ <title>Bug Tracker - projects</title>
+</head>
+<body>
+	<div  layout:fragment = "content" class = "container topPadding">
+     	<div class = "card">
+     		<div class = "card card-body">
+     		     <form action = "/projects" class = "form-inline" autocomplete="off">
+     				<div class = "form-group mb-2">
+     					<input type = "text" class = "form-control" name = "name" placeholder = "Search project"/>
+     					<input type = "submit" value = "Search" class = "bth btn-primary"/>
+     				</div>
+     			</form>
+   				<a href = "/newProject" ><button class = "bth btn-primary newPos">New Project</button></a>
+     			<table class = "table table-hover">
+     				<thead>
+     					<tr>
+     						<th>Name</th>
+     						<th>Due To</th>
+     						<th>Status</th>
+     					</tr>
+     				</thead>
+     				<tbody>
+     					<tr th:each = "project:${Projects}" th:if = "${project.managerEmail} == ${#authentication.getPrincipal().getUsername()}">
+     						<td th:text = "${project.name}"></td>
+     						<td th:text = "${project.dueTo}"></td>
+     						<td th:text = "${project.status}"></td>
+     					</tr>
+     				</tbody>
+     			</table>
+     		</div>
+     	</div>
+     </div>
+</body>
+</html>

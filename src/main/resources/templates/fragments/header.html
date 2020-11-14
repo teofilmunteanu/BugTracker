@@ -25,6 +25,9 @@
       <li class = "nav-item" sec:authorize = "hasRole('ROLE_PROJECT_MANAGER')">
       	<a class = "nav-link" href = "/teams">Teams</a>
       </li>
+      <li class = "nav-item" sec:authorize = "hasRole('ROLE_PROJECT_MANAGER')">
+      	<a class = "nav-link" href = "/projects">Projects</a>
+      </li>
     </ul>
     <form class = "form-inline my-2 my-lg-0" th:action = "@{/logout}" method = "post" sec:authorize = "isAuthenticated()">
       <input class = "form-control mr-sm-2" type = "hidden" /> 
