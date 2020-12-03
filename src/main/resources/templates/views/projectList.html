@@ -30,6 +30,7 @@
      						<td th:text = "${project.name}"></td>
      						<td th:text = "${project.dueTo}"></td>
      						<td th:text = "${project.status}"></td>
+     						<td><a th:href = "@{/deleteProject(name = ${project.name})}" class = "btn btn-light">Delete</a></td>
      					</tr>
      				</tbody>
      			</table>

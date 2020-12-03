@@ -36,6 +36,9 @@ public class TeamCreateController
 		{
 			return "views/teamForm";
 		}
+		
+		team.setManagerEmail((String)session.getAttribute("manager"));
+
 		if(teamService.teamExists(team.getName(), team.getManagerEmail()))
 		{
 			model.addAttribute("teamExists", true);
@@ -43,9 +46,8 @@ public class TeamCreateController
 			return "views/teamForm";
 		}
 		
-		team.setManagerEmail((String)session.getAttribute("manager"));
 		teamService.createTeam(team);
-		
-		return "views/createSucces";
+
+		return "redirect:/teams";
 	}
 }

@@ -5,8 +5,9 @@ import java.io.Serializable;
 public class TeamId implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	
+
 	private String managerEmail;
+	
 	private String name;	
 	
 	public TeamId() 
@@ -49,5 +50,11 @@ public class TeamId implements Serializable
 		} else if (!managerEmail.equals(other.managerEmail))
 			return false;
 		return true;
+	}
+	
+	@Override
+	public String toString() 
+	{
+		return "TeamId [managerEmail=" + managerEmail + ", name=" + name + "]";
 	}
 }

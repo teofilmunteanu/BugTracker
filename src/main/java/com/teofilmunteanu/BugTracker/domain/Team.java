@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @IdClass(TeamId.class)
-public class Team 
+public class Team
 {	
 	@Id
 	private String managerEmail;
@@ -24,7 +24,7 @@ public class Team
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "TEAM_PROJECTS", 
 		joinColumns = { @JoinColumn(name = "TEAM_MANAGER"), @JoinColumn(name = "TEAM_NAME") }, 
-		inverseJoinColumns = { @JoinColumn(name = "PROJECT_MANAGER"), @JoinColumn(name = "PROJECT_NAME") })
+		inverseJoinColumns = { @JoinColumn(name = "PROJECT_MANAGER"), @JoinColumn(name = "PROJECT_NAME") })//{ @JoinColumn(name = "PROJECT_ID")})
 	private List<Project> projects;
 	
 	public Team()
@@ -32,10 +32,20 @@ public class Team
 		
 	}
 	
-	public Team(String email, String name, String password) 
+	public Team(String name) 
 	{
 		this.name = name;
-		this.nrOfMembers = 0;
+		//this.nrOfMembers = 0;
+	}
+
+	public String getName() 
+	{
+		return name;
+	}
+
+	public void setName(String name) 
+	{
+		this.name = name;
 	}
 
 	public String getManagerEmail() 
@@ -48,16 +58,6 @@ public class Team
 		this.managerEmail = managerEmail;
 	}
 	
-	public String getName() 
-	{
-		return name;
-	}
-
-	public void setName(String name) 
-	{
-		this.name = name;
-	}
-
 	public int getNrOfMembers() 
 	{
 		return nrOfMembers;

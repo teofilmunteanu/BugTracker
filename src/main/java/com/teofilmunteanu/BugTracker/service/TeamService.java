@@ -26,11 +26,23 @@ public class TeamService
 		return teamRepo.findByNameLike("%" + name + "%");
 	}
 	
-	public boolean teamExists(String name, String manager) 
+	public boolean teamExists(String name, String managerEmail) 
 	{
-		if(teamRepo.findById((new TeamId(name, manager))).isPresent())
+		TeamId id = new TeamId(name, managerEmail);
+		
+		if(teamRepo.existsById(id))
 			return true;
 		else
 			return false;
+	}
+	
+	public void deleteTeam(String name, String managerEmail)
+	{
+		TeamId id = new TeamId(name, managerEmail);
+		
+		if(teamRepo.existsById(id))
+		{
+			teamRepo.deleteById(id);
+		}
 	}
 }

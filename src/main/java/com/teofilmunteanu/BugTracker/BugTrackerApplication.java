@@ -15,7 +15,7 @@ public class BugTrackerApplication implements CommandLineRunner
 {
 	@Autowired
 	private UserService userService;
-	
+
 	public static void main(String[] args) 
 	{
 		SpringApplication.run(BugTrackerApplication.class, args);
@@ -26,6 +26,7 @@ public class BugTrackerApplication implements CommandLineRunner
 	{
 		User newManager = new User("manager@email.com", "Manager", "Test", "manager");
 		newManager.setName(newManager.getFirstName() + ' ' + newManager.getLastName());
+		newManager.setManagerEmail("manager@email.com");
 		userService.createManager(newManager);
 	}
 }

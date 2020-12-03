@@ -46,7 +46,7 @@ public class UserService
 	/*Returns the User object related to the given email*/
 	public User findOne(String email) 
 	{
-		if(userRepo.findById(email).isPresent())
+		if(userRepo.existsById(email))
 			return userRepo.findById(email).get();
 		else 
 			return null;
@@ -67,7 +67,7 @@ public class UserService
 	/*Returns true if the given email is stored in the database and false otherwise*/
 	public boolean userExists(String email) 
 	{
-		if(userRepo.findById(email).isPresent())
+		if(userRepo.existsById(email))
 			return true;
 		else
 			return false;

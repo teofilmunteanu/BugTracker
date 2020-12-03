@@ -21,6 +21,7 @@ public class Project
 	@NotEmpty
 	private String name;
 	
+	@NotEmpty
 	private String dueTo;
 	
 	private String status;
@@ -38,12 +39,12 @@ public class Project
 	{
 		
 	}
-
-	public Project(String name, String dueTo, String status) 
+	
+	public Project(String name, String dueTo) 
 	{
 		this.name = name;
 		this.dueTo = dueTo;
-		this.status = status;
+		this.setStatus("Open");
 	}
 
 	public String getManagerEmail() 
@@ -71,7 +72,7 @@ public class Project
 		return dueTo;
 	}
 
-	public void setDue_to(String dueTo) 
+	public void setDueto(String dueTo) 
 	{
 		this.dueTo = dueTo;
 	}

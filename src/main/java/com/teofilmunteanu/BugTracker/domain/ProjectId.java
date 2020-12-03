@@ -7,6 +7,7 @@ public class ProjectId implements Serializable
 	private static final long serialVersionUID = 1L;
 	
 	private String managerEmail;
+	
 	private String name;	
 	
 	public ProjectId() 
@@ -49,5 +50,10 @@ public class ProjectId implements Serializable
 		} else if (!managerEmail.equals(other.managerEmail))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "ProjectId [managerEmail=" + managerEmail + ", name=" + name + "]";
 	}	
 }

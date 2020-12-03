@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 		http.httpBasic().disable();
 		http.authorizeRequests().antMatchers("/", "/register", "/login", "/css/**", "/webjars/**").permitAll() 
 		.antMatchers("/bugs").hasAnyRole("DEVELOPER, PROJECT_MANAGER")
-		.antMatchers("/users", "/addBug").hasRole("PROJECT_MANAGER")
+		.antMatchers("/users", "/addBug", "/teams", "/projects").hasRole("PROJECT_MANAGER")
 		.and().formLogin().loginPage("/login").permitAll()
 		.defaultSuccessUrl("/bugs").and().logout().logoutSuccessUrl("/login");
 	}

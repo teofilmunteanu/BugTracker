@@ -56,14 +56,16 @@ public class RegisterController
 		}
 		
 		user.setName(user.getFirstName() + ' ' + user.getLastName());
-		user.setManagerEmail((String)session.getAttribute("manager"));
+		
 		
 		if((String)session.getAttribute("manager") == null)
 		{
+			user.setManagerEmail(user.getEmail());
 			userService.createManager(user); 
 		}
 		else
 		{
+			user.setManagerEmail((String)session.getAttribute("manager"));
 			userService.createDeveloper(user);
 		}
 		

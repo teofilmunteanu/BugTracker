@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org"
+  xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate = "~{fragments/layout}" >
+<head>
+ <title>Bug Tracker - create team</title>
+</head>
+<body>
+
+     <div  layout:fragment = "content" class = "container topPadding">
+	     <div class = "alert alert-info" th:if = "${teamExists}">
+	     	<h5 class = "text text-center">
+	     		A team with that name already exists
+	     	</h5>
+	     </div>
+     	<form th:action = "@{/newTeam}" th:object = "${team}" method = "post" autocomplete="off">
+	     	<div class = "form-group">
+	     		<label for = "name" class = "form-control-label">Name</label>
+	     		<input type = "text" class = "form-control" th:field = "*{name}" id = "name" autofocus/>
+	     		<div class = "text text-danger" th:if="${#fields.hasErrors('name')}" th:errors = "*{name}">        	
+	     		</div>
+	     	</div>
+	     	<input type = "submit" value = "Submit" class = "btn btn-primary topMargin" />
+     	</form>
+     </div>
+</body>
+</html>

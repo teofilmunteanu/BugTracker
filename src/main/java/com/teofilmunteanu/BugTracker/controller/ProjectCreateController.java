@@ -36,16 +36,18 @@ public class ProjectCreateController
 		{
 			return "views/projectForm";
 		}
+		
+		project.setManagerEmail((String)session.getAttribute("manager"));
+		
 		if(projectService.projectExists(project.getName(), project.getManagerEmail()))
 		{
 			model.addAttribute("projectExists", true);
 			
 			return "views/projectForm";
 		}
-		
-		project.setManagerEmail((String)session.getAttribute("manager"));
+			
 		projectService.createProject(project);
 		
-		return "views/createSucces";
+		return "redirect:/projects";
 	}
 }

@@ -28,6 +28,7 @@
      					<tr th:each = "team:${Teams}" th:if = "${team.managerEmail} == ${#authentication.getPrincipal().getUsername()}">
      						<td th:text = "${team.name}"></td>
      						<td th:text = "${team.nrOfMembers}"></td>
+     						<td><a th:href = "@{/deleteTeam(name = ${team.name})}" class = "btn btn-light">Delete</a></td>
      					</tr>
      				</tbody>
      			</table>

@@ -17,6 +17,7 @@ public class ProjectService
 	
 	public void createProject(Project project)
 	{
+		project.setStatus("Open");
 		projectRepo.save(project);
 	}
 	
@@ -26,11 +27,23 @@ public class ProjectService
 		return projectRepo.findByNameLike("%" + name + "%");
 	}
 	
-	public boolean projectExists(String name, String manager) 
+	public boolean projectExists(String name, String managerEmail) 
 	{
-		if(projectRepo.findById((new ProjectId(name, manager))).isPresent())
+		ProjectId id = new ProjectId(name, managerEmail);
+		
+		if(projectRepo.existsById(id))
 			return true;
 		else
 			return false;
+	}
+	
+	public void deleteProject(String name, String managerEmail)
+	{
+		ProjectId id = new ProjectId(name, managerEmail);
+		
+		if(projectRepo.existsById(id))
+		{
+			projectRepo.deleteById(id);
+		}
 	}
 }
