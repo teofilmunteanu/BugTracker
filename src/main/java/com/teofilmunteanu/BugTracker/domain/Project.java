@@ -44,7 +44,13 @@ public class Project
 	{
 		this.name = name;
 		this.dueTo = dueTo;
-		this.setStatus("Open");
+	}
+	
+	public Project(String name, String dueTo, String status) 
+	{
+		this.name = name;
+		this.dueTo = dueTo;
+		this.status = status;
 	}
 
 	public String getManagerEmail() 
@@ -72,7 +78,7 @@ public class Project
 		return dueTo;
 	}
 
-	public void setDueto(String dueTo) 
+	public void setDueTo(String dueTo) 
 	{
 		this.dueTo = dueTo;
 	}

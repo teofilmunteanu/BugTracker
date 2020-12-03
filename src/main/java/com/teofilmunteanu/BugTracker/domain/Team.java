@@ -35,7 +35,12 @@ public class Team
 	public Team(String name) 
 	{
 		this.name = name;
-		//this.nrOfMembers = 0;
+	}
+	
+	public Team(String name, int nrOfMembers)
+	{
+		this.name = name;
+		this.nrOfMembers = nrOfMembers;
 	}
 
 	public String getName() 
