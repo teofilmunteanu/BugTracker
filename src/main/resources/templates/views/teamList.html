@@ -5,12 +5,13 @@
   layout:decorate = "~{fragments/layout}" >
 <head>
  <title>Bug Tracker - teams</title>
+ <script type = "text/javascript" src="../../static/js/script.js" th:src = "@{/js/script.js}"></script>
 </head>
 <body>
 	<div  layout:fragment = "content" class = "container topPadding">
      	<div class = "card">
      		<div class = "card card-body">
-     		     <form action = "/teams" class = "form-inline" autocomplete="off">
+     		     <form action = "/teams" class = "form-inline" autocomplete = "off">
      				<div class = "form-group mb-2">
      					<input type = "text" class = "form-control" name = "name" placeholder = "Search team"/>
      					<input type = "submit" value = "Search" class = "bth btn-primary"/>
@@ -25,15 +26,34 @@
      					</tr>
      				</thead>
      				<tbody>
-     					<tr th:each = "team:${Teams}" th:if = "${team.managerEmail} == ${#authentication.getPrincipal().getUsername()}">
+     					<tr th:each = "team:${Teams}" th:if = "${team.managerEmail} == ${#authentication.getPrincipal().getUsername()}" >
      						<td th:text = "${team.name}"></td>
      						<td th:text = "${team.nrOfMembers}"></td>
-     						<td><a th:href = "@{/deleteTeam(name = ${team.name})}" class = "btn btn-light">Delete</a></td>
+     						<td>
+     							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+								<div class="modal fade" id="deleteModal" tabindex="-1">
+								  <div class="modal-dialog modal-dialog-centered">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h5 class="modal-title" th:text = "${'Delete team ' + team.name + ' ?'}"></h5>
+								      </div>
+								      <div class="modal-body">
+								      	<p class="text-center">Are you sure you want to delete this team?</p>
+								      	<p class="text-center">You will not be able to restore it.</p>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								        <a th:href="@{/deleteTeam(name = ${team.name})}" class="btn btn-danger">Delete</a>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+     						</td>
      					</tr>
      				</tbody>
      			</table>
      		</div>
      	</div>
-     </div>
+     </div>   
 </body>
 </html>
